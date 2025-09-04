@@ -4,7 +4,9 @@ pipeline{
     stages{
         stage("Code Build"){
             steps{
-            dockerbuild("notes-app","latest")
+            sh '''
+            docker build -t notes-app .
+            '''
             }
         }
         }
