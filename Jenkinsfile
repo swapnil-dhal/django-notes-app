@@ -4,11 +4,10 @@ pipeline{
     stages{
         stage("Code Build"){
             steps{
-            sh '''
-            docker build -t notes-app .
-            '''
+                sh '''
+                docker build -t notes-app .
+                '''
             }
-        }
         }
         stage("Deploy"){
             steps{
@@ -17,6 +16,5 @@ pipeline{
                 '''
             }
         }
-        
     }
 }
