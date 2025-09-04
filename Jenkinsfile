@@ -4,16 +4,26 @@ pipeline{
     stages{
         stage("Code Build"){
             steps{
-                sh '''
-                docker build -t notes-app .
-                '''
+                script{
+                      dockerBuild("notes-app","latest")
+                }
+            
+            }
+        }
+
+        stage("Docker image push")
+        {
+            steps{
+                script{
+                    dockerPush("dhalswapnil-dockerhub","notes-app","latest")
+                }
             }
         }
         stage("Deploy"){
             steps{
-                sh '''
-                docker run -d -p 8000:8000 notes-app:latest
-                '''
+                script{
+                    dockerRun("notes-app","latest")
+                }
             }
         }
     }
